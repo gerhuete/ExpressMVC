@@ -10,7 +10,7 @@ var usersSchema = new mongoose.Schema({
         match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/
     },
     password: { type: String, required: true },
-    name: { type: String },
+    name: { type: String, required: true, },
     posts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Posts' }]
 });
  

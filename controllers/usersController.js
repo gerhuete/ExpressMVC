@@ -15,13 +15,7 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req,res) => {
-    var result = usersService.addUser(req);
-
-    if (typeof(result) !== undefined){
-        res.status(201).render('users/confirmation',{ title: 'User Signup', message: 'The user was created succesfully'});
-    }else{
-        res.status(201).render('users/confirmation',{ title: 'User Signup', message: 'There was an error creating the user'});
-    }
+    usersService.addUser(req.body,res);
 });
 
 router.get('/confirmation', (req, res) => {

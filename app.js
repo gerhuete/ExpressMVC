@@ -7,7 +7,9 @@ const exphb = require('express-handlebars');
 const bodyparser = require('body-parser');
 const usersController = require('./controllers/usersController');
 const postsController = require('./controllers/postsController');
+const homeController = require('./controllers/homeController');
 var session = require('express-session');
+const auth = require('./middleware/auth');
 
 app.use(session({
     key: 'expressMvc',
@@ -18,8 +20,6 @@ app.use(session({
         expires: 600000
     }
 }));
-
-const auth = require('./middleware/auth');
 
 global.config = require('./configs/config');
 
@@ -35,13 +35,12 @@ app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', exphb({ extname: 'hbs', defaultLayout: 'mainLayout', layoutDir: __dirname + 'views/layouts/' }));
 app.set('view engine', 'hbs');
 
-//app.use(auth);
- 
 app.use('/users', usersController);
 app.use('/posts', postsController);
+app.use('/home', homeController);
 
-app.get('/', (req, res) => {
-    res.render('users/signin');
+app.get('/', auth, (req, res) => {
+    res.render('home', { userName: req.body.name});
 });
 
 const port = process.env.PORT || 8080;

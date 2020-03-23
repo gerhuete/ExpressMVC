@@ -1,11 +1,10 @@
 const express = require('express');
-const postsService = require('../services/postsService');
 const auth = require('../middleware/auth');
 
 var router = express.Router();
 
 router.get('/', auth, (req, res) => {
-    res.render('posts/postsList');
+    res.render('home', { userName: req.body.name});
 });
 
 module.exports = router;

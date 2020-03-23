@@ -13,13 +13,13 @@ const usersService = {
             if (!result) {
               res.render('users/confirmation',{ title: 'User Signin', message: 'Invalid Credentials'});
             }else{
-              let token = jwt.sign({ email: req.body.email }, global.config.secretKey, {
+              let token = jwt.sign({ email: req.body.email, name: user.name }, global.config.secretKey, {
                 algorithm: global.config.algorithm,
                 expiresIn: global.config.expiresIn
                 });
                 
                 req.session.token=token;
-                res.render('posts/postsList',{ token: token});
+                res.render('home',{ userName: user.name});
             }
           });
         }
@@ -59,6 +59,10 @@ const usersService = {
           res.render('users/confirmation',{ title: 'User Signup', message: 'The email is not available'});
         }
       })
+    },
+    logout: (req,res) => {
+      req.session.token=null;
+      res.render('users/signin');
     }
   }
   

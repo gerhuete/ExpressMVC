@@ -22,4 +22,8 @@ router.get('/confirmation', (req, res) => {
     res.render('users/confirmation');
 });
 
+router.get('/logout', (req,res) => {
+    usersService.logout(req,res);
+});
+
 module.exports = router;

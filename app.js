@@ -6,6 +6,9 @@ const path = require('path');
 const exphb = require('express-handlebars');
 const bodyparser = require('body-parser');
 const usersController = require('./controllers/usersController');
+const postsController = require('./controllers/postsController');
+
+global.config = require('./configs/config');
 
 app.use(bodyparser.urlencoded({
     extended: true
@@ -20,6 +23,7 @@ app.engine('hbs', exphb({ extname: 'hbs', defaultLayout: 'mainLayout', layoutDir
 app.set('view engine', 'hbs');
  
 app.use('/users', usersController);
+app.use('/posts', postsController);
 
 app.get('/', (req, res) => {
     res.render('users/signin');

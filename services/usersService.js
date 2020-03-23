@@ -4,6 +4,25 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const usersService = {
+    loginUser: (req, res) => {
+      Users.findOne({ email : req.email }).exec().then(user => {
+        if(!user){
+          res.render('users/confirmation',{ title: 'User Signin', message: 'Invalid Credentials'});
+        }else{
+          bcrypt.compare(req.password, user.password, (err, result) => {
+            if (!result) {
+              res.render('users/confirmation',{ title: 'User Signin', message: 'Invalid Credentials'});
+            }else{
+              let token = jwt.sign({ email: req.email }, global.config.secretKey, {
+                algorithm: global.config.algorithm,
+                expiresIn: global.config.expiresIn
+                });
+                res.render('posts/postsList',{ token: token});
+            }
+          });
+        }
+      })
+    }, 
     addUser: (req,res) => {
       Users.findOne({ email : req.email }).exec().then(user => {
         if(!user){

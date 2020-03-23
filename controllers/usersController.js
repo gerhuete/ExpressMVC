@@ -7,7 +7,7 @@ router.get('/signin', (req, res) => {
 });
 
 router.post('/signin', (req,res) => {
-    usersService.loginUser(req.body,res);
+    usersService.loginUser(req,res);
 });
 
 router.get('/signup', (req, res) => {
@@ -15,7 +15,7 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req,res) => {
-    usersService.addUser(req.body,res);
+    usersService.addUser(req,res);
 });
 
 router.get('/confirmation', (req, res) => {

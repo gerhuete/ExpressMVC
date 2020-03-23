@@ -7,6 +7,19 @@ const exphb = require('express-handlebars');
 const bodyparser = require('body-parser');
 const usersController = require('./controllers/usersController');
 const postsController = require('./controllers/postsController');
+var session = require('express-session');
+
+app.use(session({
+    key: 'expressMvc',
+    secret: 'expressMVCSecret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
+
+const auth = require('./middleware/auth');
 
 global.config = require('./configs/config');
 
@@ -21,6 +34,8 @@ app.use(bodyparser.json());
 app.set('views', path.join(__dirname, '/views/'));
 app.engine('hbs', exphb({ extname: 'hbs', defaultLayout: 'mainLayout', layoutDir: __dirname + 'views/layouts/' }));
 app.set('view engine', 'hbs');
+
+//app.use(auth);
  
 app.use('/users', usersController);
 app.use('/posts', postsController);

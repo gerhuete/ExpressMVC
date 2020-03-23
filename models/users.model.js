@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
  
 //Attributes of the Users object
 var usersSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
     email: { 
         type: String, 
         required: true, 

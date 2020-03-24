@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
  
 //Attributes of the Users object
 var postsSchema = new mongoose.Schema({
-    id: mongoose.Schema.Types.ObjectId,
     title: {
       type: String,
       required: true,

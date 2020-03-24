@@ -1,0 +1,26 @@
+<div class="container" style="padding-top: 40px;">
+  <table class="table table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Title</th>
+        <th scope="col">Image URL</th>
+        <th scope="col">Content</th>
+        <th scope="col">Creator</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each posts}}
+      <tr>
+        <th>{{title}}</th>
+        <td><img src={{imageUrl}} alt="..." class="img-thumbnail" style="max-width: 100px;"></td>
+        <td>{{content}}</td>
+        <td>{{creator}}</td>
+        <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
+        <td><a class="btn btn-danger" href="#" role="button">Delete</a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

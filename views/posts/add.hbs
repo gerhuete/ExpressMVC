@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="card card-container">
+        <div style="text-align: center;">Add Post</div>
+        <form action="/posts/add" method="POST" class="form-signin">
+            <span id="reauth-email" class="reauth-email"></span>
+            <input type="text" name="title" class="form-control" placeholder="title" required autofocus>
+            <input type="text" name="imageUrl" class="form-control" placeholder="image URL" required>
+            <input type="text" name="content" class="form-control" placeholder="content" required>
+            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+        </form>
+    </div>
+</div>

@@ -10,9 +10,15 @@
     <li class="nav-item active">
       <a class="nav-link" href="/home">Home</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/posts">Posts</a>
-    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Posts
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/posts">List</a>
+          <a class="dropdown-item" href="/posts/add">Create</a>
+        </div>
+      </li>
     <li class="nav-item">
       <a class="nav-link" href="/users/logout">LogOut</a>
     </li>

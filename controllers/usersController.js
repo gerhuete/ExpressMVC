@@ -18,10 +18,6 @@ router.post('/signup', (req,res) => {
     usersService.addUser(req,res);
 });
 
-router.get('/confirmation', (req, res) => {
-    res.render('users/confirmation');
-});
-
 router.get('/logout', (req,res) => {
     usersService.logout(req,res);
 });

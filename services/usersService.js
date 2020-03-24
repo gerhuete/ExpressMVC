@@ -7,13 +7,13 @@ const usersService = {
     loginUser: (req, res) => {
       Users.findOne({ email : req.body.email }).exec().then(user => {
         if(!user){
-          res.render('users/confirmation',{ title: 'User Signin', message: 'Invalid Credentials'});
+          res.render('./confirmation',{ title: 'User Signin', message: 'Invalid Credentials', redirectTo:'/users/signin'});
         }else{
           bcrypt.compare(req.body.password, user.password, (err, result) => {
             if (!result) {
-              res.render('users/confirmation',{ title: 'User Signin', message: 'Invalid Credentials'});
+              res.render('./confirmation',{ title: 'User Signin', message: 'Invalid Credentials', redirectTo:'/users/signin'});
             }else{
-              let token = jwt.sign({ email: req.body.email, name: user.name }, global.config.secretKey, {
+              let token = jwt.sign({ email: req.body.email, name: user.name, userId: user._id }, global.config.secretKey, {
                 algorithm: global.config.algorithm,
                 expiresIn: global.config.expiresIn
                 });
@@ -32,7 +32,7 @@ const usersService = {
 
           bcrypt.hash(req.body.password, 10, (err, hash) => {
             if (err) {
-              res.render('users/confirmation',{ title: 'User Signup', message: 'The operation failed'});
+              res.render('./confirmation',{ title: 'User Signup', message: 'The operation failed', redirectTo:'/users/signup'});
             } else {
               const user = new Users({
                 id: new mongoose.Types.ObjectId(),
@@ -45,10 +45,10 @@ const usersService = {
               .save((err) => {
                 if (!err){
                   //user saved
-                  res.render('users/confirmation',{ title: 'User Signup', message: 'The user was created succesfully'});
+                  res.render('./confirmation',{ title: 'User Signup', message: 'The user was created succesfully', redirectTo:'/users/signin'});
                 }
                 else
-                res.render('users/confirmation',{ title: 'User Signup', message: 'The operation failed'});
+                res.render('./confirmation',{ title: 'User Signup', message: 'The operation failed', redirectTo:'/users/signup'});
                 }
               );
             }
@@ -56,7 +56,7 @@ const usersService = {
 
         }else{
           //email is not available
-          res.render('users/confirmation',{ title: 'User Signup', message: 'The email is not available'});
+          res.render('./confirmation',{ title: 'User Signup', message: 'The email is not available', redirectTo:'/users/signup'});
         }
       })
     },

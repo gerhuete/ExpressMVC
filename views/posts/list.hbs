@@ -17,8 +17,8 @@
         <td><img src={{imageUrl}} alt="..." class="img-thumbnail" style="max-width: 100px;"></td>
         <td>{{content}}</td>
         <td>{{creator}}</td>
-        <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
-        <td><a class="btn btn-danger" href="#" role="button">Delete</a></td>
+        <td><a class="btn btn-primary" href="posts/edit/{{_id}}" role="button">Edit</a></td>
+        <td><a class="btn btn-danger" href="posts/delete" role="button">Delete</a></td>
       </tr>
       {{/each}}
     </tbody>

@@ -8,11 +8,27 @@ router.get('/', auth, (req, res) => {
     postsService.getPosts(req,res);
 });
 
-router.get('/add', (req, res) => {
+router.get('/add', auth, (req, res) => {
     res.render('posts/add');
 });
 
 router.post('/add', auth, (req,res) => {
+    postsService.addPost(req,res);
+});
+
+router.get('/edit/:postId', auth, (req, res) => {
+    postsService.getPostById(req, res);
+});
+
+router.post('/edit/:postId', auth, (req,res) => {
+    postsService.editPost(req,res);
+});
+
+router.get('/delete', auth, (req, res) => {
+    res.render('posts/delete');
+});
+
+router.post('/delete', auth, (req,res) => {
     postsService.addPost(req,res);
 });
 

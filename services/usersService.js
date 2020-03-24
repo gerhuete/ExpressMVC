@@ -24,6 +24,9 @@ const usersService = {
           });
         }
       })
+      .catch(err => {
+        res.render('./confirmation',{ title: 'User Signin', message: 'The operation failed', redirectTo:'/users/signin'});
+      });
     }, 
     addUser: (req,res) => {
       Users.findOne({ email : req.body.email }).exec().then(user => {
@@ -59,6 +62,9 @@ const usersService = {
           res.render('./confirmation',{ title: 'User Signup', message: 'The email is not available', redirectTo:'/users/signup'});
         }
       })
+      .catch(err => {
+        res.render('./confirmation',{ title: 'User Signup', message: 'The operation failed', redirectTo:'/users/signup'});
+      });
     },
     logout: (req,res) => {
       req.session.token=null;

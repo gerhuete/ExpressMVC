@@ -1,12 +1,20 @@
 <div class="container">
-    <div class="card card-container">
-        <div style="text-align: center;">Add Post</div>
+    <div class="card">
+        <div style="text-align: center;"><h3>Add Post</h3></div>
         <form action="/posts/add" method="POST" class="form-signin">
-            <span id="reauth-email" class="reauth-email"></span>
-            <input type="text" name="title" class="form-control" placeholder="title" required autofocus>
-            <input type="text" name="imageUrl" class="form-control" placeholder="image URL" required>
-            <input type="text" name="content" class="form-control" placeholder="content" required>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Save</button>
+            <div class="form-group">
+                <label for="txtTitle">Title</label>
+                <input type="text" id="txtTitle" name="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="txtImageUrl">Image URL</label>
+                <input type="text" id="txtImageUrl" name="imageUrl" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="txtContent">Content</label>
+                <input type="text" id="txtContent" name="content" class="form-control">
+            </div>
+            <button class="btn btn-primary" type="submit">Save</button>
         </form>
     </div>
 </div>

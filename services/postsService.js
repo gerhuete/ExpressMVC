@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Users = mongoose.model('Users');
 const Posts = mongoose.model('Posts');
+const usersService = require('./usersService');
 
 const postsService = {
   getPosts: (req, res) => {
@@ -42,6 +43,7 @@ const postsService = {
             post
             .save((err) => {
               if (!err){
+                usersService.updateUserPosts(req.userData.userId);
                 res.render('./confirmation',{ title: 'Add post', message: 'The post was created succesfully', redirectTo:'/posts'});
               }else{
                 res.render('./confirmation',{ title: 'Add post', message: 'The operation failed', redirectTo:'/posts/add'});
@@ -94,6 +96,7 @@ const postsService = {
     Posts.remove({ _id: req.params.postId })
     .exec()
     .then(() => {
+      usersService.updateUserPosts(req.userData.userId);
       res.render('./confirmation',{ title: 'Delete post', message: 'The Post was deleted successfully', redirectTo:'/posts'})
     })
     .catch(() => {
